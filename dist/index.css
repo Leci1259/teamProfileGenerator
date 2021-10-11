@@ -1,0 +1,44 @@
+ body {
+    font-family: 'Kalam', cursive;
+    background-color: #fff;
+    background-image:
+    linear-gradient(90deg, transparent 79px, #abced4 79px, #abced4 81px, transparent 81px),
+    linear-gradient(#eee .1em, transparent .1em);
+    background-size: 100% 1.2em;
+ }
+
+ header {
+     height: 10rem;
+     width: 100%;
+     background-color: #2596be
+    
+ }
+
+ h1{
+    text-align: center;
+    color: white;
+    font-size: 8rem;  
+    font-weight: bold;
+ }
+
+ main {
+     display: flex;
+     flex-direction: row;
+     flex-wrap: wrap;
+     justify-content: space-evenly;
+     margin-top: 5%;
+ }
+
+ .card {
+    background: rgb(162,225,247);
+background: linear-gradient(90deg, rgba(162,225,247,1) 16%, rgba(37,150,190,1) 52%, rgba(162,225,247,1) 90%);
+ }
+
+ .card p:hover{
+    color:white;
+     text-shadow: 0 0 10px #2596be;
+ }
+
+ .list-group {
+     padding: 5%;
+ }

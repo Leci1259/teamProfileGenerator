@@ -84,7 +84,7 @@ function appendToFile(answers) {
         err ? console.error(err) : console.log('Success!'))
 }
 
-// TODO: Create a function to initialize app
+// initialize app
 function init() {
     inquirer
         //run first question array
@@ -92,13 +92,10 @@ function init() {
         .then((answers) => {
             //create file and insert team mananger info
             writeToFile(answers);
+            //ask for more members and add their info
             wantMoreTeamMembers()
         })
 };
-
-// Function call to initialize app
-init();
-
 
 //functions to separate inquirer calls
 
@@ -143,3 +140,6 @@ function addTeamMembers() {
             wantMoreTeamMembers()
         })
 }
+
+// Function call to initialize app
+init();
