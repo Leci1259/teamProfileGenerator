@@ -91,3 +91,9 @@ function intMarkdwon (answers) {
 </section>`
 
 }
+module.exports = {
+    starterMarkdown,
+    endingMarkdown,
+    engMarkdown,
+    intMarkdwon
+ }

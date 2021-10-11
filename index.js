@@ -7,7 +7,7 @@ const Inquirer = require('inquirer');
 const Jest = require('jest');
 const fs = require('fs');
 const inquirer = require('inquirer');
-const markdown = require();
+const markdowns = require('./src/markdowns');
 
 //questions array
 const firstQuestions = [
@@ -75,12 +75,12 @@ const intQuestion = [
 
 //Function to write html
 function writeToFile(answers) {
-    fs.writeFile(`${answers.filename}.html`, markdown(answers), (err) =>
+    fs.writeFile(`teamList.html`, markdown.starterMarkdown(answers), (err) =>
         err ? console.error(err) : console.log('Success!'))
 }
 
 function appendToFile(answers) {
-    fs.appendFile(`${answers.filename}.html`, markdown(answers), (err) =>
+    fs.appendFile(`teamList.html`, markdown(answers), (err) =>
         err ? console.error(err) : console.log('Success!'))
 }
 
@@ -107,7 +107,9 @@ function wantMoreTeamMembers() {
                 addTeamMembers()
             }
             else {
-                return "Page Completed"
+                fs.appendFile(`teamList.html`, markdown.endingMarkdown(), (err) =>
+                err ? console.error(err) : console.log("Page Completed"))
+                return 
             }
         });
 };
@@ -125,17 +127,21 @@ function addTeamMembers() {
                         githubUser = answer.engGithub
                         return
                     })
-                //send for append
+                    fs.appendFile(`teamList.html`, markdown.engMarkdown(answers), (err) =>
+                    err ? console.error(err) : console.log('Success!'))
             }
             else {
                 inquirer
                     //ask for school
                     var schoolName='';
+                    inquirer
                     .prompt(intQuestion)
                     .then((answer) => {
                         schoolName = answer.intSchool
                         return
                     })
+                    fs.appendFile(`teamList.html`, markdown.intMarkdown(answers), (err) =>
+                    err ? console.error(err) : console.log('Success!'))
                 //send for append
             }
             //re-ask for more members
