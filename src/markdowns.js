@@ -72,7 +72,7 @@ return `<section class="card" style="width: 18rem;">
 </section>`
 }
 
-function intMarkdwon (answers) {
+function intMarkdown (answers) {
     return  `<section class="card" style="width: 18rem;">
 
     <div class="card-body">
@@ -95,5 +95,5 @@ module.exports = {
     starterMarkdown,
     endingMarkdown,
     engMarkdown,
-    intMarkdwon
+    intMarkdown
  }

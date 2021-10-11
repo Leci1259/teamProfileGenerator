@@ -42,3 +42,7 @@ background: linear-gradient(90deg, rgba(162,225,247,1) 16%, rgba(37,150,190,1) 5
  .list-group {
      padding: 5%;
  }
+
+ h5 {
+     font-weight: bold;
+ }

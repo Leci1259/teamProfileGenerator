@@ -75,13 +75,61 @@ const intQuestion = [
 
 //Function to write html
 function writeToFile(answers) {
-    fs.writeFile(`teamList.html`, markdown.starterMarkdown(answers), (err) =>
+    fs.writeFile(`./src/teamList.html`, markdowns.starterMarkdown(answers), (err) =>
         err ? console.error(err) : console.log('Success!'))
 }
 
-function appendToFile(answers) {
-    fs.appendFile(`teamList.html`, markdown(answers), (err) =>
-        err ? console.error(err) : console.log('Success!'))
+//functions to separate inquirer calls
+
+function wantMoreTeamMembers() {
+    inquirer
+        .prompt(moreTeamQuestion)
+        .then((answer) => {
+            if (answer.moreTeam) {
+                addTeamMembers()
+            }
+            else {
+                fs.appendFile(`./src/teamList.html`, markdowns.endingMarkdown(), (err) =>
+                err ? console.error(err) : console.log("Page Completed"))
+                return 
+            }
+        });
+};
+
+function addTeamMembers() {
+    inquirer
+        .prompt(teamQuestions)
+        .then((answers) => {
+            if (answers.memberType == 'Engineer') {
+                //ask for github
+                
+                var githubUser= (
+                    inquirer
+                    .prompt(engQuestion)
+                    .then((answer) => {
+                        githubUser = answer.engGithub
+                        return githubUser
+                    }));
+                    fs.appendFile(`./src/teamList.html`, markdowns.engMarkdown(answers), (err) =>
+                    err ? console.error(err) : console.log('Success!'))
+            }
+            else {
+                inquirer
+                    //ask for school
+                    var schoolName= (
+                    inquirer
+                    .prompt(intQuestion)
+                    .then((answer) => {
+                        schoolName = answer.intSchool
+                        return schoolName
+                    }));
+                    fs.appendFile(`./src/teamList.html`, markdowns.intMarkdown(answers), (err) =>
+                    err ? console.error(err) : console.log('Success!'))
+                //send for append
+            }
+            //re-ask for more members
+            wantMoreTeamMembers()
+        })
 }
 
 // initialize app
@@ -96,58 +144,5 @@ function init() {
             wantMoreTeamMembers()
         })
 };
-
-//functions to separate inquirer calls
-
-function wantMoreTeamMembers() {
-    inquirer
-        .prompt(moreTeamQuestion)
-        .then((answer) => {
-            if (answer.moreTeam) {
-                addTeamMembers()
-            }
-            else {
-                fs.appendFile(`teamList.html`, markdown.endingMarkdown(), (err) =>
-                err ? console.error(err) : console.log("Page Completed"))
-                return 
-            }
-        });
-};
-
-function addTeamMembers() {
-    inquirer
-        .prompt(teamQuestions)
-        .then((answers) => {
-            if (answers.memberType == 'Engineer') {
-                //ask for github
-                var githubUser='';
-                inquirer
-                    .prompt(engQuestion)
-                    .then((answer) => {
-                        githubUser = answer.engGithub
-                        return
-                    })
-                    fs.appendFile(`teamList.html`, markdown.engMarkdown(answers), (err) =>
-                    err ? console.error(err) : console.log('Success!'))
-            }
-            else {
-                inquirer
-                    //ask for school
-                    var schoolName='';
-                    inquirer
-                    .prompt(intQuestion)
-                    .then((answer) => {
-                        schoolName = answer.intSchool
-                        return
-                    })
-                    fs.appendFile(`teamList.html`, markdown.intMarkdown(answers), (err) =>
-                    err ? console.error(err) : console.log('Success!'))
-                //send for append
-            }
-            //re-ask for more members
-            wantMoreTeamMembers()
-        })
-}
-
 // Function call to initialize app
 init();
