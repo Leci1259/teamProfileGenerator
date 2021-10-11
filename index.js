@@ -6,6 +6,7 @@ const Intern = require('./lib/intern');
 const Inquirer = require('inquirer');
 const Jest = require('jest');
 const fs = require('fs');
+const inquirer = require('inquirer');
 const markdown = require();
 
 //questions array
@@ -37,7 +38,7 @@ const moreTeamQuestion = [
         name: 'moreTeam',
     }];
 
-const teamQuestion = [
+const teamQuestions = [
     {
         type: 'rawlist',
         message: 'What kind of member?',
@@ -78,13 +79,50 @@ function writeToFile(answers) {
         err ? console.error(err) : console.log('Success!'))
 }
 
+function appendToFile(answers) {
+    fs.appendFile(`${answers.filename}.html`, markdown(answers), (err) =>
+        err ? console.error(err) : console.log('Success!'))
+}
+
 // TODO: Create a function to initialize app
 function init() {
     inquirer
-        .prompt(questions)
+        //run first question array
+        .prompt(firstQuestions)
         .then((answers) => {
+            //create file and insert team mananger info
             writeToFile(answers);
-        });
+        },
+            inquirer
+                //ask if there are more team members
+                .prompt(moreTeamQuestion)
+                .then((answers) => {
+                    //if you answer yes to more team members
+                    if (answers.moreTeam) {
+                        inquirer
+                            //ask more questions for team member
+                            .prompt(teamQuestions)
+                            .then((answers) => {
+                                //if engineer
+                                if (answers.member - type == 'Engineer') {
+                                    //ask for github
+                                    inquirer
+                                        .prompt(engQuestion)
+                                }
+                                else {
+                                    inquirer
+                                        //ask for school
+                                        .prompt(intQuestion)
+
+                                }
+                            })
+                    }
+                    else {
+                        console.log ('Page Completed')
+                    }
+
+                })
+        );
 
 };
 
