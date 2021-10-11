@@ -14,22 +14,22 @@ const firstQuestions = [
     {
         type: 'input',
         message: 'What is the team manager"s name?',
-        name: 'man-name',
+        name: 'manName',
     },
     {
         type: 'input',
         message: 'What is the team manager"s id?',
-        name: 'man-id',
+        name: 'manId',
     },
     {
         type: 'input',
         message: 'What is the team manager"s email address?',
-        name: 'man-email',
+        name: 'manEmail',
     },
     {
         type: 'input',
         message: 'What is the team manager"s office number?',
-        name: 'man-offnum',
+        name: 'manOffnum',
     }]
 const moreTeamQuestion = [
     {
@@ -42,35 +42,35 @@ const teamQuestions = [
     {
         type: 'rawlist',
         message: 'What kind of member?',
-        name: 'member-type',
+        name: 'memberType',
         choices: ['Engineer', 'Intern']
     },
     {
         type: 'input',
         message: 'What is the team member"s name?',
-        name: 'tm-name',
+        name: 'tmName',
     },
     {
         type: 'input',
         message: 'What is the team member"s id?',
-        name: 'tm-id',
+        name: 'tmId',
     },
     {
         type: 'input',
         message: 'What is the team member"s email address?',
-        name: 'tm-email',
+        name: 'tmEmail',
     }];
 const engQuestion = [
     {
         type: 'input',
         message: 'What is the team member"s Github username?',
-        name: 'eng-github',
+        name: 'engGithub',
     }]
 const intQuestion = [
     {
         type: 'input',
         message: 'What school does the intern attend?',
-        name: 'int-school',
+        name: 'intSchool',
     }];
 
 //Function to write html
@@ -108,17 +108,19 @@ function init() {
                                     //ask for github
                                     inquirer
                                         .prompt(engQuestion)
+                                        .then()
                                 }
                                 else {
                                     inquirer
                                         //ask for school
                                         .prompt(intQuestion)
+                                        .then()
 
                                 }
                             })
                     }
                     else {
-                        console.log ('Page Completed')
+                        console.log('Page Completed')
                     }
 
                 })
@@ -130,3 +132,44 @@ function init() {
 init();
 
 
+//functions to separate inquirer calls
+
+function wantMoreTeamMembers() {
+    inquirer
+        .prompt(moreTeamQuestion)
+        .then((answer) => {
+            if (answer.moreTeam) {
+                addTeamMembers()
+            }
+            else {
+                return "Page Completed"
+            }
+        });
+};
+
+function addTeamMembers() {
+    inquirer
+        .prompt(teamQuestions)
+        .then((answers) => {
+            if (answers.memberType == 'Engineer') {
+                //ask for github
+                inquirer
+                    .prompt(engQuestion)
+                    .then((answer) => {
+                        let githubUser = answer.engGithub
+                        return githubUser
+                    })
+                //send for append
+            }
+            else {
+                inquirer
+                    //ask for school
+                    .prompt(intQuestion)
+                    .then((answer) => {
+                        let schoolName = answer.intSchool
+                        return schoolName
+                    })
+                //send for append
+            }
+        })
+}
