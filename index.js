@@ -92,40 +92,8 @@ function init() {
         .then((answers) => {
             //create file and insert team mananger info
             writeToFile(answers);
-        },
-            inquirer
-                //ask if there are more team members
-                .prompt(moreTeamQuestion)
-                .then((answers) => {
-                    //if you answer yes to more team members
-                    if (answers.moreTeam) {
-                        inquirer
-                            //ask more questions for team member
-                            .prompt(teamQuestions)
-                            .then((answers) => {
-                                //if engineer
-                                if (answers.member - type == 'Engineer') {
-                                    //ask for github
-                                    inquirer
-                                        .prompt(engQuestion)
-                                        .then()
-                                }
-                                else {
-                                    inquirer
-                                        //ask for school
-                                        .prompt(intQuestion)
-                                        .then()
-
-                                }
-                            })
-                    }
-                    else {
-                        console.log('Page Completed')
-                    }
-
-                })
-        );
-
+            wantMoreTeamMembers()
+        })
 };
 
 // Function call to initialize app
@@ -171,5 +139,7 @@ function addTeamMembers() {
                     })
                 //send for append
             }
+            //re-ask for more members
+            wantMoreTeamMembers()
         })
 }
