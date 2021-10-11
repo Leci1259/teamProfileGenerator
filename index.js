@@ -29,7 +29,7 @@ const firstQuestions = [
     {
         type: 'input',
         message: 'What is the team manager"s office number?',
-        name: 'manOffnum',
+        name: 'manOffNum',
     }]
 const moreTeamQuestion = [
     {
@@ -118,21 +118,23 @@ function addTeamMembers() {
         .then((answers) => {
             if (answers.memberType == 'Engineer') {
                 //ask for github
+                var githubUser='';
                 inquirer
                     .prompt(engQuestion)
                     .then((answer) => {
-                        let githubUser = answer.engGithub
-                        return githubUser
+                        githubUser = answer.engGithub
+                        return
                     })
                 //send for append
             }
             else {
                 inquirer
                     //ask for school
+                    var schoolName='';
                     .prompt(intQuestion)
                     .then((answer) => {
-                        let schoolName = answer.intSchool
-                        return schoolName
+                        schoolName = answer.intSchool
+                        return
                     })
                 //send for append
             }
