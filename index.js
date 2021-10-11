@@ -9,79 +9,82 @@ const fs = require('fs');
 const markdown = require();
 
 //questions array
-const questions = [
+const firstQuestions = [
     {
         type: 'input',
-        message: 'What is your project title?',
-        name: 'title',
+        message: 'What is the team manager"s name?',
+        name: 'man-name',
     },
     {
         type: 'input',
-        message: 'Give a description of your project',
-        name: 'description',
+        message: 'What is the team manager"s id?',
+        name: 'man-id',
     },
     {
         type: 'input',
-        message: 'Type out install code',
-        name: 'installCode',
+        message: 'What is the team manager"s email address?',
+        name: 'man-email',
     },
     {
         type: 'input',
-        message: 'How are you using this?',
-        name: 'usage',
-    },
+        message: 'What is the team manager"s office number?',
+        name: 'man-offnum',
+    }]
+const moreTeamQuestion = [
     {
-        type: 'input',
-        message: 'Who are your contributers?',
-        name: 'contribution',
-    },
-    {
-        type: 'input',
-        message: 'Test Code?',
-        name: 'tests',
-    },
+        type: 'confirm',
+        message: 'Do you have more team members?',
+        name: 'moreTeam',
+    }];
+
+const teamQuestion = [
     {
         type: 'rawlist',
-        message: 'What kind of license?',
-        name: 'license',
-        choices:["MIT",  "APACHE 2.0", "GPL 3.0", "BSD 3", "None"],
+        message: 'What kind of member?',
+        name: 'member-type',
+        choices: ['Engineer', 'Intern']
     },
     {
         type: 'input',
-        message: 'Github username?',
-        name: 'github',
+        message: 'What is the team member"s name?',
+        name: 'tm-name',
     },
     {
         type: 'input',
-        message: 'Email?',
-        name: 'email',
+        message: 'What is the team member"s id?',
+        name: 'tm-id',
     },
     {
         type: 'input',
-        message: 'How should I reach you?',
-        name: 'contact',
-    },
+        message: 'What is the team member"s email address?',
+        name: 'tm-email',
+    }];
+const engQuestion = [
     {
         type: 'input',
-        message: 'What do you want to name this?',
-        name: 'filename',
-    },
-];
-
+        message: 'What is the team member"s Github username?',
+        name: 'eng-github',
+    }]
+const intQuestion = [
+    {
+        type: 'input',
+        message: 'What school does the intern attend?',
+        name: 'int-school',
+    }];
 
 //Function to write html
 function writeToFile(answers) {
-    fs.writeFile(`${answers.filename}.html`, markdown(answers) , (err) =>
-            err ? console.error(err) : console.log('Success!'))
+    fs.writeFile(`${answers.filename}.html`, markdown(answers), (err) =>
+        err ? console.error(err) : console.log('Success!'))
 }
 
 // TODO: Create a function to initialize app
 function init() {
     inquirer
-    .prompt(questions)
-    .then((answers) => {
-        writeToFile(answers);
-    });
+        .prompt(questions)
+        .then((answers) => {
+            writeToFile(answers);
+        });
 
 };
 
