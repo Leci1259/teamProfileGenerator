@@ -1,4 +1,4 @@
-function starterMarkdown(answers) {
+function starterMarkdown(object) {
 return `<!DOCTYPE html>
 <html>
 
@@ -24,13 +24,13 @@ return `<!DOCTYPE html>
     <section class="card" style="width: 18rem;">
 
             <div class="card-body">
-                <h5 class="card-title">${answers.manName}</h5>
+                <h5 class="card-title">${object.getName()}</h5>
                 <p class="card-text">Team Manager</p>
             </div>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item">ID: ${answers.manId}</li>
-                <li class="list-group-item">Email: <a href="mailto: ${answers.manEmail}" target="_blank">${answers.manEmail}</a></li>
-                <li class="list-group-item">Office Number: ${answers.manOffNum}</li>
+                <li class="list-group-item">ID: ${object.getId()}</li>
+                <li class="list-group-item">Email: <a href="mailto: ${object.getEmail()}" target="_blank">${object.getEmail()}</a></li>
+                <li class="list-group-item">Office Number: ${object.OffNum}</li>
             </ul>
 
         </section>`
@@ -48,18 +48,18 @@ function endingMarkdown () {
 };
 
 
-function engMarkdown (answers) {
+function engMarkdown (object) {
 return `<section class="card" style="width: 18rem;">
 
 <div class="card-body">
-    <h5 class="card-title">${answers.tmName}</h5>
+    <h5 class="card-title">${object.getName()}</h5>
     <p class="card-text">Engineer</p>
 </div>
 <ul class="list-group list-group-flush">
-    <li class="list-group-item"> ID: ${answers.tmId}</li>
+    <li class="list-group-item"> ID: ${object.getId()}</li>
     <li class="list-group-item">
         Email:
-        <a href="mailto: ${answers.tmEmail}" target="_blank">${answers.tmEmail}</a>
+        <a href="mailto: ${object.getEmail()}" target="_blank">${object.getEmail()}</a>
     </li>
     </li>
     <li class="list-group-item">
@@ -72,20 +72,20 @@ return `<section class="card" style="width: 18rem;">
 </section>`
 }
 
-function intMarkdown (answers) {
+function intMarkdown (object) {
     return  `<section class="card" style="width: 18rem;">
 
     <div class="card-body">
-        <h5 class="card-title">${answers.tmName}</h5>
+        <h5 class="card-title">${object.getName()}</h5>
         <p class="card-text">Intern</p>
     </div>
     <ul class="list-group list-group-flush">
-        <li class="list-group-item"> ID: ${answers.tmId}</li>
+        <li class="list-group-item"> ID: ${object.getId()}</li>
         <li class="list-group-item">
             Email:
-            <a href="mailto: ${answers.tmEmail}" target="_blank"> ${answers.tmEmail}</a>
+            <a href="mailto: ${object.getEmail()}" target="_blank"> ${object.getEmail()}</a>
         </li>
-        <li class="list-group-item">School: ${answers.intSchool}}</li>
+        <li class="list-group-item">School: ${object.getSchool()}}</li>
     </ul>
 
 </section>`

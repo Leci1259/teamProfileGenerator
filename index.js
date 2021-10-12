@@ -3,10 +3,10 @@ const Employee = require('./lib/employee');
 const Manager = require('./lib/manager');
 const Engineer = require('./lib/engineer');
 const Intern = require('./lib/intern');
-const Jest = require('jest');
 const fs = require('fs');
 const inquirer = require('inquirer');
 const markdowns = require('./src/markdowns');
+const Engineer = require('./lib/engineer');
 
 //questions array
 const firstQuestions = [
@@ -88,8 +88,8 @@ const intQuestion = [
     }];
 
 //Function to write html
-function writeToFile(answers) {
-    fs.writeFile(`./src/teamList.html`, markdowns.starterMarkdown(answers), (err) => {
+function writeToFile(object) {
+    fs.writeFile(`./src/teamList.html`, markdowns.starterMarkdown(object), (err) => {
         if (err) {
             console.log(err)
         };
@@ -127,8 +127,9 @@ function addTeamMembers() {
                 inquirer
                     .prompt(engQuestion)
                     .then((answers) => {
+                        const engineerEntry =  new Engineer(answers.tmName,answers.tmId,answers.tmEmail,answers.engGithub)
 
-                        fs.appendFile(`./src/teamList.html`, markdowns.engMarkdown(answers), (err) => {
+                        fs.appendFile(`./src/teamList.html`, markdowns.engMarkdown(engineerEntry), (err) => {
                             if (err) {
                                 console.log(err)
                             };
@@ -143,8 +144,9 @@ function addTeamMembers() {
                 inquirer
                     .prompt(intQuestion)
                     .then((answers) => {
+                        const intEntry =  new Intern(answers.tmName,answers.tmId,answers.tmEmail,answers.intSchool)
 
-                        fs.appendFile(`./src/teamList.html`, markdowns.intMarkdown(answers), (err) => {
+                        fs.appendFile(`./src/teamList.html`, markdowns.intMarkdown(intEntry), (err) => {
                             if (err) {
                                 console.log(err)
                             };
@@ -165,8 +167,10 @@ function init() {
                     //run first question array
                     .prompt(firstQuestions)
                     .then((answers) => {
+                        //added his info class object
+                        const managerEntry =new Manager(answers.manName,answers.manId,answers.manEmail,answers.manOffNum);
                         //create file and insert team mananger info
-                        writeToFile(answers);
+                        writeToFile(managerEntry);
                         //ask for more members and add their info
                         wantMoreTeamMembers()
                     })
