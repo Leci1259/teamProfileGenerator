@@ -146,12 +146,14 @@ function addTeamMembers() {
                         fs.appendFile(`./src/teamList.html`, markdowns.intMarkdown(answers), (err) =>
                             err ? console.error(err) : console.log('Success!'))
                     });
-
-                //send for append
+                    
             }
-            //re-ask for more members
-            wantMoreTeamMembers()
+            return
         })
+        .then (
+         //re-ask for more members
+            wantMoreTeamMembers()   
+        );
 }
 
 // initialize app
