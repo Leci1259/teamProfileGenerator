@@ -43,7 +43,7 @@ describe('Render Items from Employee Class', () => {
 
 describe('Render Items from new methods', () => {
     it('Correctly returns github', () => {
-        const githun = 'Leci1259';
+        const github = 'Leci1259';
         const response = new Engineer ('Lesiana', '01','lr@gmail.com','Leci1259');
 
        // Check if name output is the same
