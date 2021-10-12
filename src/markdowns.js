@@ -85,7 +85,7 @@ function intMarkdown (object) {
             Email:
             <a href="mailto: ${object.getEmail()}" target="_blank"> ${object.getEmail()}</a>
         </li>
-        <li class="list-group-item">School: ${object.getSchool()}}</li>
+        <li class="list-group-item">School: ${object.getSchool()}</li>
     </ul>
 
 </section>`
