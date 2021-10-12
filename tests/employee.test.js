@@ -3,7 +3,7 @@ const Employee = require('../lib/employee');
 describe('Object Creation', () => {
     it('New object should be created', () => {
         const object = new Employee ('Lesiana', '01','lr@gmail.com','Engineer');
-        expect(typeof object== !'undefined').toBe(true);
+        expect(typeof object != 'undefined').toBe(true);
     });
 });
 
@@ -13,7 +13,7 @@ describe('Render Items', () => {
         const response = new Employee ('Lesiana', '01','lr@gmail.com','Engineer');
 
        // Check if name output is the same
-        expect(response.getName).toBe(name);
+        expect(response.getName()).toBe(name);
     });
 
     it('Correctly returns id', () => {
@@ -21,7 +21,7 @@ describe('Render Items', () => {
         const response = new Employee ('Lesiana', '455','lr@gmail.com','Engineer');
 
        // Check if name output is the same
-        expect(response.getId).toBe(id);
+        expect(response.getId()).toBe(id);
     });
 
     it('Correctly returns email', () => {
@@ -29,7 +29,7 @@ describe('Render Items', () => {
         const response = new Employee ('Lesiana', '01','lr@gmail.com','Engineer');
 
        // Check if name output is the same
-        expect(response.getEmail).toBe(email);
+        expect(response.getEmail()).toBe(email);
     });
 
     it('Correctly returns role', () => {
@@ -37,6 +37,6 @@ describe('Render Items', () => {
         const response = new Employee ('Lesiana', '01','lr@gmail.com','Engineer');
 
        // Check if name output is the same
-        expect(response.getRole).toBe(role);
+        expect(response.getRole()).toBe(role);
     });
 });
