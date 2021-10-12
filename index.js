@@ -3,7 +3,6 @@ const Employee = require('./lib/employee');
 const Manager = require('./lib/manager');
 const Engineer = require('./lib/engineer');
 const Intern = require('./lib/intern');
-const Inquirer = require('inquirer');
 const Jest = require('jest');
 const fs = require('fs');
 const inquirer = require('inquirer');
@@ -133,8 +132,10 @@ function addTeamMembers() {
                             if (err) {
                                 console.log(err)
                             };
-                            return
+
+
                         })
+                        wantMoreTeamMembers()
                     });
 
             }
@@ -143,30 +144,32 @@ function addTeamMembers() {
                     .prompt(intQuestion)
                     .then((answers) => {
 
-                        fs.appendFile(`./src/teamList.html`, markdowns.intMarkdown(answers), (err) =>
-                            err ? console.error(err) : console.log('Success!'))
-                    });
-                    
+                        fs.appendFile(`./src/teamList.html`, markdowns.intMarkdown(answers), (err) => {
+                            if (err) {
+                                console.log(err)
+                            };
+
+                        },
+                            wantMoreTeamMembers());
+
+                    })
+                return
             }
-            return
+
         })
-        .then (
-         //re-ask for more members
-            wantMoreTeamMembers()   
-        );
-}
+    }
 
 // initialize app
 function init() {
-    inquirer
-        //run first question array
-        .prompt(firstQuestions)
-        .then((answers) => {
-            //create file and insert team mananger info
-            writeToFile(answers);
-            //ask for more members and add their info
-            wantMoreTeamMembers()
-        })
-};
-// Function call to initialize app
-init();
+                inquirer
+                    //run first question array
+                    .prompt(firstQuestions)
+                    .then((answers) => {
+                        //create file and insert team mananger info
+                        writeToFile(answers);
+                        //ask for more members and add their info
+                        wantMoreTeamMembers()
+                    })
+            };
+    // Function call to initialize app
+    init();
