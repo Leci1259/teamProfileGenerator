@@ -90,9 +90,13 @@ const intQuestion = [
 
 //Function to write html
 function writeToFile(answers) {
-    fs.writeFile(`./src/teamList.html`, markdowns.starterMarkdown(answers), (err) =>
-        err ? console.error(err) : console.log('Success!'))
-}
+    fs.writeFile(`./src/teamList.html`, markdowns.starterMarkdown(answers), (err) => {
+        if (err) {
+            console.log(err)
+        };
+        return
+    })
+};
 
 //functions to separate inquirer calls
 
@@ -104,8 +108,12 @@ function wantMoreTeamMembers() {
                 addTeamMembers()
             }
             else {
-                fs.appendFile(`./src/teamList.html`, markdowns.endingMarkdown(), (err) =>
-                    err ? console.error(err) : console.log("Page Completed"))
+                fs.appendFile(`./src/teamList.html`, markdowns.endingMarkdown(), (err) => {
+                    if (err) {
+                        console.log(err)
+                    };
+                    return
+                })
                 return
             }
         });
@@ -121,8 +129,12 @@ function addTeamMembers() {
                     .prompt(engQuestion)
                     .then((answers) => {
 
-                        fs.appendFile(`./src/teamList.html`, markdowns.engMarkdown(answers), (err) =>
-                            err ? console.error(err) : console.log('Success!'))
+                        fs.appendFile(`./src/teamList.html`, markdowns.engMarkdown(answers), (err) => {
+                            if (err) {
+                                console.log(err)
+                            };
+                            return
+                        })
                     });
 
             }
