@@ -64,7 +64,7 @@ return `<section class="card" style="width: 18rem;">
     </li>
     <li class="list-group-item">
         Github:
-        <a href="https://github.com/${githubUser}" target="_blank"> ${githubUser}</a>
+        <a href="https://github.com/${answers.engGithub}" target="_blank">${answers.engGithub}</a>
     </li>
 
 </ul>
@@ -85,7 +85,7 @@ function intMarkdown (answers) {
             Email:
             <a href="mailto: ${answers.tmEmail}" target="_blank"> ${answers.tmEmail}</a>
         </li>
-        <li class="list-group-item">School: ${schoolName}}</li>
+        <li class="list-group-item">School: ${answers.intSchool}}</li>
     </ul>
 
 </section>`

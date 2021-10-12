@@ -38,13 +38,14 @@ const moreTeamQuestion = [
         name: 'moreTeam',
     }];
 
-const teamQuestions = [
+const newMemberType = [
     {
         type: 'rawlist',
         message: 'What kind of member?',
         name: 'memberType',
         choices: ['Engineer', 'Intern']
-    },
+    }];
+const engQuestion = [
     {
         type: 'input',
         message: 'What is the team member"s name?',
@@ -59,14 +60,28 @@ const teamQuestions = [
         type: 'input',
         message: 'What is the team member"s email address?',
         name: 'tmEmail',
-    }];
-const engQuestion = [
+    },
     {
         type: 'input',
         message: 'What is the team member"s Github username?',
         name: 'engGithub',
-    }]
+    }];
 const intQuestion = [
+    {
+        type: 'input',
+        message: 'What is the team member"s name?',
+        name: 'tmName',
+    },
+    {
+        type: 'input',
+        message: 'What is the team member"s id?',
+        name: 'tmId',
+    },
+    {
+        type: 'input',
+        message: 'What is the team member"s email address?',
+        name: 'tmEmail',
+    },
     {
         type: 'input',
         message: 'What school does the intern attend?',
@@ -90,41 +105,36 @@ function wantMoreTeamMembers() {
             }
             else {
                 fs.appendFile(`./src/teamList.html`, markdowns.endingMarkdown(), (err) =>
-                err ? console.error(err) : console.log("Page Completed"))
-                return 
+                    err ? console.error(err) : console.log("Page Completed"))
+                return
             }
         });
 };
 
 function addTeamMembers() {
     inquirer
-        .prompt(teamQuestions)
+        .prompt(newMemberType)
         .then((answers) => {
             if (answers.memberType == 'Engineer') {
-                //ask for github
-                
-                var githubUser= (
-                    inquirer
+
+                inquirer
                     .prompt(engQuestion)
-                    .then((answer) => {
-                        githubUser = answer.engGithub
-                        return githubUser
-                    }));
-                    fs.appendFile(`./src/teamList.html`, markdowns.engMarkdown(answers), (err) =>
-                    err ? console.error(err) : console.log('Success!'))
+                    .then((answers) => {
+
+                        fs.appendFile(`./src/teamList.html`, markdowns.engMarkdown(answers), (err) =>
+                            err ? console.error(err) : console.log('Success!'))
+                    });
+
             }
             else {
                 inquirer
-                    //ask for school
-                    var schoolName= (
-                    inquirer
                     .prompt(intQuestion)
-                    .then((answer) => {
-                        schoolName = answer.intSchool
-                        return schoolName
-                    }));
-                    fs.appendFile(`./src/teamList.html`, markdowns.intMarkdown(answers), (err) =>
-                    err ? console.error(err) : console.log('Success!'))
+                    .then((answers) => {
+
+                        fs.appendFile(`./src/teamList.html`, markdowns.intMarkdown(answers), (err) =>
+                            err ? console.error(err) : console.log('Success!'))
+                    });
+
                 //send for append
             }
             //re-ask for more members
