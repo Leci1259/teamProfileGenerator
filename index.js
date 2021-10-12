@@ -6,7 +6,6 @@ const Intern = require('./lib/intern');
 const fs = require('fs');
 const inquirer = require('inquirer');
 const markdowns = require('./src/markdowns');
-const Engineer = require('./lib/engineer');
 
 //questions array
 const firstQuestions = [

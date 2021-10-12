@@ -64,7 +64,7 @@ return `<section class="card" style="width: 18rem;">
     </li>
     <li class="list-group-item">
         Github:
-        <a href="https://github.com/${answers.engGithub}" target="_blank">${answers.engGithub}</a>
+        <a href="https://github.com/${object.getGithub()}" target="_blank">${object.getGithub()}</a>
     </li>
 
 </ul>
