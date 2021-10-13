@@ -41,8 +41,10 @@
   ```
 
   ### Video Preview Link
-  [Video link](https://drive.google.com/file/d/1_cMBJ7UByMgsbT-gbFjGsiYY2wN3_t1T/view?usp=sharing)  
-  ![Gif Preview](https://github.com/Leci1259/teamProfileGenerator/blob/main/src/TeamGenerator.gif =300x300)
+  [Video link](https://drive.google.com/file/d/1_cMBJ7UByMgsbT-gbFjGsiYY2wN3_t1T/view?usp=sharing)
+  
+  ![Gif Preview](https://github.com/Leci1259/teamProfileGenerator/blob/main/src/TeamGenerator.gif){:height="50%" width="50%"}
+ 
 
   
   ## Contribution 
