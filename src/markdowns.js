@@ -30,7 +30,7 @@ return `<!DOCTYPE html>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">ID: ${object.getId()}</li>
                 <li class="list-group-item">Email: <a href="mailto: ${object.getEmail()}" target="_blank">${object.getEmail()}</a></li>
-                <li class="list-group-item">Office Number: ${object.OffNum}</li>
+                <li class="list-group-item">Office Number: ${object.getOffNum()}</li>
             </ul>
 
         </section>`
