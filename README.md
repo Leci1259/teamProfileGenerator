@@ -44,8 +44,6 @@
   [Video link](https://drive.google.com/file/d/1_cMBJ7UByMgsbT-gbFjGsiYY2wN3_t1T/view?usp=sharing)
   
   ![Gif Preview](https://github.com/Leci1259/teamProfileGenerator/blob/main/src/TeamGenerator.gif)
-  <img src="https://github.com/Leci1259/teamProfileGenerator/blob/main/src/TeamGenerator.gif" width="400" height="300">
- 
 
   
   ## Contribution 
