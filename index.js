@@ -88,7 +88,7 @@ const intQuestion = [
 
 //Function to write html
 function writeToFile(object) {
-    fs.writeFile(`./src/teamList.html`, markdowns.starterMarkdown(object), (err) => {
+    fs.writeFile(`./dist/teamList.html`, markdowns.starterMarkdown(object), (err) => {
         if (err) {
             console.log(err)
         };
@@ -106,7 +106,7 @@ function wantMoreTeamMembers() {
                 addTeamMembers()
             }
             else {
-                fs.appendFile(`./src/teamList.html`, markdowns.endingMarkdown(), (err) => {
+                fs.appendFile(`./dist/teamList.html`, markdowns.endingMarkdown(), (err) => {
                     if (err) {
                         console.log(err)
                     };
@@ -128,7 +128,7 @@ function addTeamMembers() {
                     .then((answers) => {
                         const engineerEntry =  new Engineer(answers.tmName,answers.tmId,answers.tmEmail,answers.engGithub)
 
-                        fs.appendFile(`./src/teamList.html`, markdowns.engMarkdown(engineerEntry), (err) => {
+                        fs.appendFile(`./dist/teamList.html`, markdowns.engMarkdown(engineerEntry), (err) => {
                             if (err) {
                                 console.log(err)
                             };
@@ -145,7 +145,7 @@ function addTeamMembers() {
                     .then((answers) => {
                         const intEntry =  new Intern(answers.tmName,answers.tmId,answers.tmEmail,answers.intSchool)
 
-                        fs.appendFile(`./src/teamList.html`, markdowns.intMarkdown(intEntry), (err) => {
+                        fs.appendFile(`./dist/teamList.html`, markdowns.intMarkdown(intEntry), (err) => {
                             if (err) {
                                 console.log(err)
                             };
